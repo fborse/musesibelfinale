@@ -12,13 +12,7 @@ App {
                 Repeater {
                     model: "CDEFGAHc"
 
-                    PianoKey {
-                        width: parent.width / 8
-                        height: parent.height
-
-                        restColor: "white"
-                        radius: dp(8)
-
+                    WhitePianoKey {
                         required property string modelData
                         onTapped: console.log("Key", modelData, "tapped !")
                     }
@@ -31,15 +25,9 @@ App {
                 Repeater {
                     model: "CD"
 
-                    PianoKey {
+                    BlackPianoKey {
                         required property int index
                         x: (index + 1) * parent.width/8 - width/2
-
-                        width: parent.width / 16
-                        height: 2 * parent.height / 3
-
-                        restColor: "black"
-                        radius: dp(4)
 
                         required property string modelData
                         onTapped: console.log("Key", modelData + "#", "tapped !")
@@ -49,15 +37,9 @@ App {
                 Repeater {
                     model: "FGA"
 
-                    PianoKey {
+                    BlackPianoKey {
                         required property int index
                         x: (index + 4) * parent.width/8 - width/2
-
-                        width: parent.width / 16
-                        height: 2 * parent.height / 3
-
-                        restColor: "black"
-                        radius: dp(4)
 
                         required property string modelData
                         onTapped: console.log("Key", modelData + "#", "tapped !")
