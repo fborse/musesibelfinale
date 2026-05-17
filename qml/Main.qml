@@ -67,7 +67,7 @@ App {
                 anchors.right: parent.right
                 height: parent.height
 
-                octave: "4"//octaveView.currentIndex + 3
+                octave: listView.currentIndex + 3
                 duration: "4"
 
                 onNoteTapped: note => console.log("Key", note, "tapped !")
