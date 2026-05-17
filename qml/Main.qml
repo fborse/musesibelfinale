@@ -9,7 +9,7 @@ App {
             Rectangle {
                 anchors.fill: parent
 
-                color: "white"
+                color: tapHandler.pressed? "gray" : "white"
                 border.color: "black"
                 border.width: dp(2)
 
@@ -17,6 +17,7 @@ App {
                 bottomRightRadius: dp(16)
 
                 TapHandler {
+                    id: tapHandler
                     gesturePolicy: TapHandler.ReleaseWithinBounds
 
                     onTapped: console.log("Key A tapped !");
