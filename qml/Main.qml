@@ -10,12 +10,17 @@ App {
                 anchors.fill: parent
 
                 Repeater {
-                    model: "CDEFGAHc"
+                    model: "CDEFGAH"
 
                     WhitePianoKey {
                         required property string modelData
                         onTapped: console.log("Key", modelData, "tapped !")
                     }
+                }
+
+                WhitePianoKey {
+                    restColor: "#606060"
+                    onTapped: console.log("Key _ tapped !")
                 }
             }
 
