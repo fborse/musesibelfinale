@@ -15,6 +15,35 @@ App {
                 anchors.top: parent.top
 
                 height: parent.height / 4
+
+                Rectangle {
+                    id: root
+                    anchors.fill: parent
+
+                    color: "white"
+
+                    Item {
+                        anchors.centerIn: parent
+                        width: parent.width * 0.9
+                        height: parent.height / 4
+
+                        Repeater {
+                            model: 5
+
+                            Rectangle {
+                                anchors.left: parent.left
+                                anchors.right: parent.right
+
+                                height: dp(1)
+
+                                required property int index
+                                y: parent.height / 4 * index
+
+                                color: "black"
+                            }
+                        }
+                    }
+                }
             }
 
             Item {
