@@ -12,23 +12,15 @@ App {
                 Repeater {
                     model: "CDEFGAHc"
 
-                    Rectangle {
+                    PianoKey {
                         width: parent.width / 8
                         height: parent.height
 
-                        color: tapHandler.pressed? "gray" : "white"
-                        border.color: "black"
-                        border.width: dp(2)
+                        restColor: "white"
+                        radius: dp(8)
 
-                        bottomLeftRadius: dp(8)
-                        bottomRightRadius: dp(8)
-
-                        TapHandler {
-                            id: tapHandler
-                            gesturePolicy: TapHandler.ReleaseWithinBounds
-
-                            onTapped: console.log("Key", modelData, "tapped !");
-                        }
+                        required property string modelData
+                        onTapped: console.log("Key", modelData, "tapped !")
                     }
                 }
             }
@@ -39,50 +31,36 @@ App {
                 Repeater {
                     model: "CD"
 
-                    Rectangle {
+                    PianoKey {
+                        required property int index
                         x: (index + 1) * parent.width/8 - width/2
 
                         width: parent.width / 16
                         height: 2 * parent.height / 3
 
-                        color: tapHandlerCD.pressed? "gray" : "black"
-                        border.color: "black"
-                        border.width: dp(2)
+                        restColor: "black"
+                        radius: dp(4)
 
-                        bottomLeftRadius: dp(4)
-                        bottomRightRadius: dp(4)
-
-                        TapHandler {
-                            id: tapHandlerCD
-                            gesturePolicy: TapHandler.ReleaseWithinBounds
-
-                            onTapped: console.log("Key", modelData + "#", "tapped !")
-                        }
+                        required property string modelData
+                        onTapped: console.log("Key", modelData + "#", "tapped !")
                     }
                 }
 
                 Repeater {
                     model: "FGA"
 
-                    Rectangle {
+                    PianoKey {
+                        required property int index
                         x: (index + 4) * parent.width/8 - width/2
 
                         width: parent.width / 16
                         height: 2 * parent.height / 3
 
-                        color: tapHandlerFGA.pressed? "gray" : "black"
-                        border.color: "black"
-                        border.width: dp(2)
+                        restColor: "black"
+                        radius: dp(4)
 
-                        bottomLeftRadius: dp(4)
-                        bottomRightRadius: dp(4)
-
-                        TapHandler {
-                            id: tapHandlerFGA
-                            gesturePolicy: TapHandler.ReleaseWithinBounds
-
-                            onTapped: console.log("Key", modelData + "#", "tapped !")
-                        }
+                        required property string modelData
+                        onTapped: console.log("Key", modelData + "#", "tapped !")
                     }
                 }
             }
