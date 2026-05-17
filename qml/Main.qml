@@ -18,6 +18,11 @@ App {
                 delegate: Label {
                     required property string modelData
                     text: modelData
+
+                    required property int index
+                    TapHandler {
+                        onTapped: octaveView.currentIndex = index
+                    }
                 }
             }
 
@@ -26,7 +31,7 @@ App {
                 anchors.right: parent.right
                 height: parent.height
 
-                octave: "4"
+                octave: octaveView.currentIndex + 3
                 duration: "4"
 
                 onNoteTapped: note => console.log("Key", note, "tapped !")
