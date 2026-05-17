@@ -6,21 +6,30 @@ App {
         AppPage {
             title: qsTr("Main Page")
 
-            Rectangle {
+            Row {
                 anchors.fill: parent
 
-                color: tapHandler.pressed? "gray" : "white"
-                border.color: "black"
-                border.width: dp(2)
+                Repeater {
+                    model: "CDEFGAHc"
 
-                bottomLeftRadius: dp(16)
-                bottomRightRadius: dp(16)
+                    Rectangle {
+                        width: parent.width / 8
+                        height: parent.height
 
-                TapHandler {
-                    id: tapHandler
-                    gesturePolicy: TapHandler.ReleaseWithinBounds
+                        color: tapHandler.pressed? "gray" : "white"
+                        border.color: "black"
+                        border.width: dp(2)
 
-                    onTapped: console.log("Key A tapped !");
+                        bottomLeftRadius: dp(16)
+                        bottomRightRadius: dp(16)
+
+                        TapHandler {
+                            id: tapHandler
+                            gesturePolicy: TapHandler.ReleaseWithinBounds
+
+                            onTapped: console.log("Key", modelData, "tapped !");
+                        }
+                    }
                 }
             }
         }
