@@ -6,50 +6,13 @@ App {
         AppPage {
             title: qsTr("Main Page")
 
-            Row {
+            PianoKeyboard {
                 anchors.fill: parent
 
-                Repeater {
-                    model: "CDEFGAH"
+                octave: "4"
+                duration: "4"
 
-                    WhitePianoKey {
-                        required property string modelData
-                        onTapped: console.log("Key", modelData, "tapped !")
-                    }
-                }
-
-                WhitePianoKey {
-                    restColor: "#606060"
-                    onTapped: console.log("Key _ tapped !")
-                }
-            }
-
-            Item {
-                anchors.fill: parent
-
-                Repeater {
-                    model: "CD"
-
-                    BlackPianoKey {
-                        required property int index
-                        x: (index + 1) * parent.width/8 - width/2
-
-                        required property string modelData
-                        onTapped: console.log("Key", modelData + "#", "tapped !")
-                    }
-                }
-
-                Repeater {
-                    model: "FGA"
-
-                    BlackPianoKey {
-                        required property int index
-                        x: (index + 4) * parent.width/8 - width/2
-
-                        required property string modelData
-                        onTapped: console.log("Key", modelData + "#", "tapped !")
-                    }
-                }
+                onNoteTapped: note => console.log("Key", note, "tapped !")
             }
         }
     }
