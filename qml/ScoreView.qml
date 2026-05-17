@@ -14,6 +14,8 @@ Rectangle {
     }
 
     Canvas {
+        id: trebleKey
+
         anchors.left: staff.left
         anchors.verticalCenter: root.verticalCenter
 
@@ -39,6 +41,32 @@ Rectangle {
             ctx.lineTo(-linesDistance, 2*linesDistance);
 
             ctx.stroke();
+        }
+    }
+
+    Item {
+        id: timeSignature
+
+        anchors.left: trebleKey.right
+        anchors.verticalCenter: parent.verticalCenter
+
+        width: height * 0.25
+        height: parent.height
+
+        Text {
+            text: "4"
+            font.pixelSize: parent.height / 9
+
+            anchors.bottom: parent.verticalCenter
+            anchors.horizontalCenter: parent.horizontalCenter
+        }
+
+        Text {
+            text: "4"
+            font.pixelSize: parent.height / 9
+
+            anchors.top: parent.verticalCenter
+            anchors.horizontalCenter: parent.horizontalCenter
         }
     }
 }
