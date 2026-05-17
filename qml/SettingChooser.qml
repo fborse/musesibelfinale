@@ -11,6 +11,7 @@ Column {
     required property string title
     required property list<string> entries
 
+    property int originalIndex: 0
     readonly property int index: listView.currentIndex
 
     Rectangle {
@@ -40,6 +41,7 @@ Column {
         spacing: dp(8)
 
         model: entries
+        currentIndex: originalIndex
 
         delegate: Label {
             required property string modelData

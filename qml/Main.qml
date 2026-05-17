@@ -13,6 +13,8 @@ App {
 
                 title: qsTr("Octave")
                 entries: ["3", "4", "5"]
+
+                originalIndex: 1
             }
 
             SettingChooser {
@@ -21,6 +23,8 @@ App {
 
                 title: qsTr("Duration")
                 entries: ["1/1", "1/2", "1/4", "1/8", "1/16"]
+
+                originalIndex: 2
             }
 
             PianoKeyboard {
