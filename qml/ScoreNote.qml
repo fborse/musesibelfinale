@@ -15,7 +15,7 @@ Canvas {
 
     function drawNoteHead(ctx, centerY, ellipseW, ellipseH) {
         ctx.beginPath();
-    //  centred at (0, y)
+    //  centred at (0, centerY)
         ctx.ellipse(-ellipseW/2, centerY - ellipseH/2, ellipseW, ellipseH);
 
         if (duration > 2)
@@ -33,12 +33,35 @@ Canvas {
         ctx.stroke();
     }
 
+    function drawSharp(ctx, centerY, noteW) {
+        ctx.beginPath();
+
+        const x0 = -3 * noteW/2;
+        const y0 = centerY - noteW/2;
+    //  vertical right
+        ctx.moveTo(x0 + 3*noteW/4, y0);
+        ctx.lineTo(x0 + 3*noteW/4, y0 + noteW);
+    //  vertical left
+        ctx.moveTo(x0 + noteW/2, y0);
+        ctx.lineTo(x0 + noteW/2, y0 + noteW);
+    //  top angled "horizontal"
+        ctx.moveTo(x0 + noteW, y0);
+        ctx.lineTo(x0, y0 + noteW/4);
+    //  bottom angled "horizontal"
+        ctx.moveTo(x0 + noteW, y0 + 3*noteW/4);
+        ctx.lineTo(x0, y0 + noteW);
+
+        ctx.stroke();
+    }
+
     function toY(index) {
         return (13 - index) * linesDistance / 2;
     }
 
     function drawNote(ctx) {
         drawNoteHead(ctx, toY(noteIndex), 1.5 * linesDistance, linesDistance);
+        if (sharp)
+            drawSharp(ctx, toY(noteIndex), 1.5 * linesDistance);
 
         var j;
         for (j = 7; j >= noteIndex; j -= 2)
