@@ -68,6 +68,21 @@ Canvas {
         ctx.stroke();
     }
 
+    function drawStemFlag(ctx, headCenterY, noteW, goesUp, stemLength, flagLength) {
+        ctx.beginPath();
+
+        const x0 = goesUp? noteW/2 : -noteW/2;
+        const y0 = headCenterY + (goesUp? -stemLength : stemLength);
+
+        const dx = noteW / 2;
+        const dy = goesUp? flagLength : -flagLength;
+
+        ctx.moveTo(x0, y0);
+        ctx.lineTo(x0 + dx, y0 + dy);
+
+        ctx.stroke();
+    }
+
     function toY(index) {
         return (13 - index) * linesDistance / 2;
     }
@@ -87,6 +102,8 @@ Canvas {
 
         if (duration > 1)
             drawNoteStem(ctx, toY(noteIndex), noteW, (noteIndex < 13), 2.5 * noteW);
+        if (duration > 4)
+            drawStemFlag(ctx, toY(noteIndex), noteW, (noteIndex < 13), 2.5 * noteW, 2 * noteW);
     }
 
     onPaint: {
