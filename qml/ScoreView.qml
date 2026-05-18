@@ -49,6 +49,8 @@ Rectangle {
 
                 required property string modelData
                 note: modelData
+
+                linesDistance: staff.height / 4
             }
         }
     }
