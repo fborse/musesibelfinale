@@ -5,6 +5,10 @@ Rectangle {
 
     color: "white"
 
+//  (trebleKey + timeSignature + notes) * staff factor
+    readonly property double contentsWidth: (0.25 + 0.25 + 0.5 * score.length) * parent.height
+    implicitWidth: contentsWidth / 0.9
+
     Staff {
         id: staff
 
