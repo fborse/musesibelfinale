@@ -110,12 +110,27 @@ Canvas {
             drawStemFlag(ctx, toY(noteIndex), noteW, (noteIndex < 13), 2.5 * noteW, 2 * noteW, 1);
     }
 
+    function drawFullRest(ctx, topY, rectW, rectH) {
+        ctx.fillRect(-rectW/2, topY, rectW, rectH);
+    }
+
+    function drawHalfRest(ctx, bottomY, rectW, rectH) {
+        ctx.fillRect(-rectW/2, bottomY - rectH, rectW, rectH);
+    }
+
+    function drawRest(ctx) {
+        if (duration == 1)
+            drawFullRest(ctx, toY(15), 1.5 * linesDistance, 0.5 * linesDistance);   //  15 is the 4th line
+        else if (duration == 2)
+            drawHalfRest(ctx, toY(13), 1.5 * linesDistance, 0.5 * linesDistance);   // 13 is the central line
+    }
+
     onPaint: {
         var ctx = getContext("2d");
         ctx.translate(width / 2, height / 2);
 
-        if (pitch === "#")
-        {}
+        if (pitch === "_")
+            drawRest(ctx);
         else
             drawNote(ctx);
     }
