@@ -33,11 +33,11 @@ Canvas {
         ctx.stroke();
     }
 
-    function drawSharp(ctx, centerY, noteW) {
+    function drawSharp(ctx, headCenterY, noteW) {
         ctx.beginPath();
 
         const x0 = -3 * noteW/2;
-        const y0 = centerY - noteW/2;
+        const y0 = headCenterY - noteW/2;
     //  vertical right
         ctx.moveTo(x0 + 3*noteW/4, y0);
         ctx.lineTo(x0 + 3*noteW/4, y0 + noteW);
@@ -54,20 +54,39 @@ Canvas {
         ctx.stroke();
     }
 
+    function drawNoteStem(ctx, headCenterY, noteW, goesUp, stemLength) {
+        ctx.beginPath();
+
+        const x = goesUp? noteW/2 : -noteW/2;
+
+        ctx.moveTo(x, headCenterY);
+        if (goesUp)
+            ctx.lineTo(x, headCenterY - stemLength);
+        else
+            ctx.lineTo(x, headCenterY + stemLength);
+
+        ctx.stroke();
+    }
+
     function toY(index) {
         return (13 - index) * linesDistance / 2;
     }
 
     function drawNote(ctx) {
-        drawNoteHead(ctx, toY(noteIndex), 1.5 * linesDistance, linesDistance);
+        const noteW = 1.5 * linesDistance;
+
+        drawNoteHead(ctx, toY(noteIndex), noteW, linesDistance);
         if (sharp)
-            drawSharp(ctx, toY(noteIndex), 1.5 * linesDistance);
+            drawSharp(ctx, toY(noteIndex), noteW);
 
         var j;
         for (j = 7; j >= noteIndex; j -= 2)
-            drawNoteHeadLine(ctx, toY(j), 2.25 * linesDistance);
+            drawNoteHeadLine(ctx, toY(j), 1.5 * noteW);
         for (j = 19; j <= noteIndex; j += 2)
-            drawNoteHeadLine(ctx, toY(j), 2.25 * linesDistance);
+            drawNoteHeadLine(ctx, toY(j), 1.5 * noteW);
+
+        if (duration > 1)
+            drawNoteStem(ctx, toY(noteIndex), noteW, (noteIndex < 13), 2.5 * noteW);
     }
 
     onPaint: {
