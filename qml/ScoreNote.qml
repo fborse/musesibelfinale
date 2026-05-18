@@ -127,12 +127,16 @@ Canvas {
         ctx.stroke();
     }
 
-    function drawLeftWing(ctx, centerY, restW, restH) {
+    function drawLeftWing(ctx, centerY, restW, restH, wingIndex) {
         ctx.beginPath();
 
-        ctx.moveTo(restW/2, centerY - restH/2);
-        ctx.lineTo(0, centerY - restH/4);
-        ctx.lineTo(-restW/2, centerY - restH/2);
+        const x0 = restW/2 - restW/4 * wingIndex;
+        const y0 = centerY - restH/2 + restH/4 * wingIndex;
+        const ym = centerY + restH/4 * (wingIndex - 1);
+
+        ctx.moveTo(x0, y0);
+        ctx.lineTo(0, ym);
+        ctx.lineTo(-restW/2, y0);
 
         ctx.stroke();
     }
@@ -141,7 +145,9 @@ Canvas {
         drawRestBase(ctx, toY(13), linesDistance, 1.5 * linesDistance);
 
         if (duration > 4)
-            drawLeftWing(ctx, toY(13), linesDistance, 1.5 * linesDistance);
+            drawLeftWing(ctx, toY(13), linesDistance, 1.5 * linesDistance, 0);
+        if (duration > 8)
+            drawLeftWing(ctx, toY(13), linesDistance, 1.5 * linesDistance, 1);
     }
 
     function drawRest(ctx) {
