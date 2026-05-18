@@ -5,8 +5,9 @@ Rectangle {
 
     color: "white"
 
+    readonly property int notesLength: Math.max(13, notes.length)
 //  (trebleKey + timeSignature + notes) * staff factor
-    readonly property double contentsWidth: (0.25 + 0.25 + 0.5 * score.length) * parent.height
+    readonly property double contentsWidth: (0.25 + 0.25 + 0.5 * notesLength) * parent.height
     implicitWidth: contentsWidth / 0.9
 
     Staff {
