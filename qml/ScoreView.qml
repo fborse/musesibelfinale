@@ -3,7 +3,6 @@ import QtQuick
 Rectangle {
     required property list<string> notes
 
-    id: root
     color: "white"
 
     Staff {
@@ -18,7 +17,7 @@ Rectangle {
         id: trebleKey
 
         anchors.left: staff.left
-        anchors.verticalCenter: root.verticalCenter
+        anchors.verticalCenter: parent.verticalCenter
 
         width: height * 0.25
         height: parent.height
@@ -32,5 +31,27 @@ Rectangle {
 
         width: height * 0.25
         height: parent.height
+    }
+
+    Row {
+        anchors.left: timeSignature.right
+        anchors.right: staff.right
+        height: parent.height
+
+        Repeater {
+            model: notes
+
+            Rectangle {
+                width: height * 0.5
+                height: parent.height
+
+                anchors.verticalCenter: parent.verticalCenter
+
+                required property string modelData
+                color: "transparent"
+                border.color: "lightblue"
+                border.width: dp(1)
+            }
+        }
     }
 }
