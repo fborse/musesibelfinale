@@ -118,11 +118,39 @@ Canvas {
         ctx.fillRect(-rectW/2, bottomY - rectH, rectW, rectH);
     }
 
+    function drawRestBase(ctx, centerY, restW, restH) {
+        ctx.beginPath();
+
+        ctx.moveTo(-restW/2, centerY + restH/2);    //  lower left
+        ctx.lineTo(restW/2, centerY - restH/2);     //  upper right
+
+        ctx.stroke();
+    }
+
+    function drawLeftWing(ctx, centerY, restW, restH) {
+        ctx.beginPath();
+
+        ctx.moveTo(restW/2, centerY - restH/2);
+        ctx.lineTo(0, centerY - restH/4);
+        ctx.lineTo(-restW/2, centerY - restH/2);
+
+        ctx.stroke();
+    }
+
+    function drawOtherRests(ctx) {
+        drawRestBase(ctx, toY(13), linesDistance, 1.5 * linesDistance);
+
+        if (duration > 4)
+            drawLeftWing(ctx, toY(13), linesDistance, 1.5 * linesDistance);
+    }
+
     function drawRest(ctx) {
         if (duration == 1)
             drawFullRest(ctx, toY(15), 1.5 * linesDistance, 0.5 * linesDistance);   //  15 is the 4th line
         else if (duration == 2)
             drawHalfRest(ctx, toY(13), 1.5 * linesDistance, 0.5 * linesDistance);   // 13 is the central line
+        else
+            drawOtherRests(ctx);
     }
 
     onPaint: {
