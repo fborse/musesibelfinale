@@ -1,8 +1,9 @@
 import QtQuick
 
 Rectangle {
-    id: root
+    required property list<string> notes
 
+    id: root
     color: "white"
 
     Staff {

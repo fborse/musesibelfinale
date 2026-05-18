@@ -3,6 +3,8 @@ import QtQuick
 import QtQuick.Controls
 
 App {
+    property list<string> score: []
+
     NavigationStack {
         AppPage {
             title: qsTr("Main Page")
@@ -18,6 +20,8 @@ App {
 
                 ScoreView {
                     anchors.fill: parent
+
+                    notes: score
                 }
             }
 
@@ -55,7 +59,7 @@ App {
                     octave: octavesList.index + 3
                     duration: Math.pow(2, durationsList.index)
 
-                    onNoteTapped: note => console.log("Key", note, "tapped !")
+                    onNoteTapped: note => score.push(note)
                 }
             }
         }
