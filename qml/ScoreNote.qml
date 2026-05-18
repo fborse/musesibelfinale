@@ -68,11 +68,13 @@ Canvas {
         ctx.stroke();
     }
 
-    function drawStemFlag(ctx, headCenterY, noteW, goesUp, stemLength, flagLength) {
+    function drawStemFlag(ctx, headCenterY, noteW, goesUp, stemLength, flagLength, flagIndex) {
         ctx.beginPath();
 
         const x0 = goesUp? noteW/2 : -noteW/2;
-        const y0 = headCenterY + (goesUp? -stemLength : stemLength);
+        const y0 = headCenterY + (goesUp?
+                        -stemLength + flagIndex * noteW
+                       : stemLength - flagIndex * noteW);
 
         const dx = noteW / 2;
         const dy = goesUp? flagLength : -flagLength;
@@ -103,7 +105,9 @@ Canvas {
         if (duration > 1)
             drawNoteStem(ctx, toY(noteIndex), noteW, (noteIndex < 13), 2.5 * noteW);
         if (duration > 4)
-            drawStemFlag(ctx, toY(noteIndex), noteW, (noteIndex < 13), 2.5 * noteW, 2 * noteW);
+            drawStemFlag(ctx, toY(noteIndex), noteW, (noteIndex < 13), 2.5 * noteW, 2 * noteW, 0);
+        if (duration > 8)
+            drawStemFlag(ctx, toY(noteIndex), noteW, (noteIndex < 13), 2.5 * noteW, 2 * noteW, 1);
     }
 
     onPaint: {
