@@ -41,16 +41,14 @@ Rectangle {
         Repeater {
             model: notes
 
-            Rectangle {
+            ScoreNote {
                 width: height * 0.5
                 height: parent.height
 
                 anchors.verticalCenter: parent.verticalCenter
 
                 required property string modelData
-                color: "transparent"
-                border.color: "lightblue"
-                border.width: dp(1)
+                note: modelData
             }
         }
     }
